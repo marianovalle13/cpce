@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "456861117065",
+    "firebase_url": "https://cpce-capacitacion.firebaseio.com",
+    "project_id": "cpce-capacitacion",
+    "storage_bucket": "cpce-capacitacion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456861117065:android:1d501311d88c2fb292f458",
+        "android_client_info": {
+          "package_name": "com.diproach.cpcecapacitacion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456861117065-5926i89ku30i57q5pk018miiu4o2dlkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHV93aY_ry2q88-cLpz5tBreLyjEzfJzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456861117065-5926i89ku30i57q5pk018miiu4o2dlkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

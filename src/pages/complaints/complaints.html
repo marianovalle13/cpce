@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar text-right>
+        <img src="assets/imgs/logo-central.png" padding>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h5>FORMULARIOS Y DENUNCIAS</h5>
+    <ion-row margin-top>
+        <ion-col col-1>
+            <img src="assets/imgs/item.png">
+        </ion-col>
+        <ion-col col-12>
+            <p>Descargue el formulario de denuncia de la aseguradora en la cual esta cubierta su unidad, únicamente a los efectos de conocer los datos que nos deberá brindar. Le sugerimos que las denuncias las realice a nuestro departamento de siniestros,
+                para que nosotros podamos hacer el seguimiento en la aseguradora y estar atentos a su resolución.
+            </p>
+        </ion-col>
+    </ion-row>
+
+    <ion-row margin-bottom>
+        <ion-col>
+            <button ion-button class="button-sinister" round (click)="call()">
+              <img src="assets/imgs/res_drawable-mdpi_assets_icons_iconphone.png" class="icon-sir">
+              011-5217-2080
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <!-- <ion-row *ngFor="let item of secures">
+        <ion-col>
+            <button ion-button color="dark" class="button-form" (click)="openFile()">
+                  <img src="assets/imgs/publish.png" class="icon-sir"> 
+                  {{item.name}}
+                </button>
+        </ion-col>
+    </ion-row> -->
+
+    <ion-list>
+        <button *ngFor="let item of secures" ion-item (click)="openFileExternalUrl(item.pdfUrl)" color="dark">
+            <ion-avatar item-start>
+                <img style="border-radius:0" src="assets/imgs/publish.png">
+            </ion-avatar>
+            <h2>{{item.name}}</h2>
+        </button>
+    </ion-list>
+
+    <!-- <ion-row margin-top class="class-button">
+        <ion-col col-3 text-left padding>
+            <img src="assets/imgs/publish.png" class="icon-sir">
+        </ion-col>
+        <ion-col col-9>
+            <h2>ASDASD</h2>
+        </ion-col>
+    </ion-row> -->
+</ion-content>

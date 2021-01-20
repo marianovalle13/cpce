@@ -1,0 +1,36 @@
+page-data {
+    .toolbar-title {
+        color: color($colors, dark);
+        overflow: visible;
+        position: relative;
+        .subtitle {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            font-size: 70%;
+        }
+    }
+    .toolbar-background {
+        background: white !important;
+    }
+    .icon-class {
+        width: 40px;
+        //margin-left: 15px;
+        text-align: left;
+    }
+    .icon-class2 {
+        width: 40px;
+        //margin-left: 13px;
+        text-align: left;
+    }
+    .button-sinister {
+        height: 3.5em;
+        width: 100%;
+        font-size: 1.2em;
+        text-align: left;
+        font-weight: normal;
+    }
+    .row-center {
+        margin-top: 3%;
+    }
+}

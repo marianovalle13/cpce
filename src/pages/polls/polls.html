@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Responder encuesta
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-row>
+        <ion-col text-center>
+            <h4 style="color: gray">{{poll?.curso}}</h4>
+        </ion-col>
+    </ion-row>
+
+    <div *ngFor="let item of poll?.disertante">
+        <ion-row padding-left>
+            <ion-col col-12>
+                <p>Disertante</p>
+                <ion-note class="class-note">{{item?.nombre}} {{item?.apellido}}</ion-note>
+            </ion-col>
+        </ion-row>
+
+        <ion-card *ngFor="let question of item?.preguntas; let i = index" [attr.data-index]="i">
+            <ion-card-content>
+                <ion-list-header no-lines>
+                    {{question?.pregunta}}
+                    <ion-badge item-right color="secondary">{{question?.valor}}</ion-badge>
+                </ion-list-header>
+                <ion-item>
+                    <ion-range step="1" min="0" max="10" snaps="true" color="secondary" [(ngModel)]="question.valor">
+                        <ion-icon range-left color="secondary" name="sad"></ion-icon>
+                        <ion-icon range-right color="secondary" name="happy"></ion-icon>
+                    </ion-range>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+    <div *ngFor="let item of poll?.calificacion">
+        <ion-row padding-left>
+            <ion-col col-12>
+                <p>Calificación General</p>
+            </ion-col>
+        </ion-row>
+        <ion-card>
+            <ion-card-content>
+            <ion-list-header no-lines>
+                {{item?.pregunta}}
+                <ion-badge item-right color="secondary">{{item?.valor}}</ion-badge>
+            </ion-list-header>
+            <ion-item>
+                <ion-range step="1" min="0" max="10" snaps="true" color="secondary" [(ngModel)]="item.valor">
+                    <ion-icon range-left color="secondary" name="sad"></ion-icon>
+                    <ion-icon range-right color="secondary" name="happy"></ion-icon>
+                </ion-range>
+            </ion-item>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+    <ion-card>
+        <ion-card-content>
+            <div>
+                <p>Sugerencias</p>
+                <ion-row padding-top>
+                    <textarea class="suggestion" [(ngModel)]="suggestion" [ngModelOptions]="{standalone: true}" placeholder="Envíanos una sugerencia"></textarea>
+                    <!-- <ion-textarea placeholder="Escribe aquí...">{{poll?.data?.sugerencias}}</ion-textarea> -->
+                </ion-row>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-row padding>
+        <!-- <button ion-button block class="button-end" (click)="goToList()"> FINALIZAR</button> -->
+        <button ion-button block class="button-end" (click)="setPoll()"> FINALIZAR</button>
+    </ion-row>
+</ion-content>

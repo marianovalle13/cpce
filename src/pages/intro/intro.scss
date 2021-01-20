@@ -1,0 +1,42 @@
+    page-intro {
+        .content {
+            .content-container {
+                background-image: url("/assets/imgs/mecanic.jpg");
+                height: 45%;
+                background-position-x: center;
+                background-size: cover;
+            }
+            .siniestro-container {
+                background-image: url("/assets/imgs/accident.jpg");
+                height: 45%;
+                background-position-x: center;
+                background-size: cover;
+            }
+            .logo-container {
+                height: 10%;
+                background-color: rgb(51, 65, 79);
+            }
+            .color-text {
+                color: white;
+                font-size: 2.2rem;
+            }
+        }
+        .icon-class {
+            width: 75px;
+            padding-right: 15px;
+        }
+        .intro-button {
+            height: 5.2em;
+            font-size: 1.8rem;
+            width: 100%;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }

@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Cursos Home
+        </ion-title>
+        <ion-buttons end>
+            <button (click)="presentPopover($event)" ion-button icon-only>
+                <ion-icon name="funnel" color="light"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-searchbar placeholder="Buscar.." [showCancelButton]="shouldShowCancel" 
+      (keyup)="searchTrainings($event.target.value)"
+      (ionClear)="clearTrainings()"></ion-searchbar>
+    <ion-item no-lines text-center *ngIf="isBusy">
+        <ion-spinner name="dots" color="primary"></ion-spinner>
+      </ion-item>
+    <ion-item no-lines text-center *ngIf="trainings.length == 0 && !isBusy">
+        <span style="color: gray"><ion-icon name="eye-off" class="icon-space-right"></ion-icon>No hay resultados</span>
+      </ion-item>
+    <ion-list>
+        <ion-item text-wrap *ngFor="let item of trainings" (click)="goToCourse(item.id, item.imagenURL, item.tipo)">
+            <ion-thumbnail item-start>
+                <img src="{{item?.imagenURL}}" onerror="this.src='assets/imgs/modalidad-consejo2.jpg';">
+            </ion-thumbnail>
+            <h2 class="class-h2" [innerHtml]="item.titulo"></h2>
+            <!-- <p [innerHtml]="item.categoria"></p> -->
+            <!-- <ion-badge class="custom-badge" color="home">{{item.categoria}}</ion-badge> -->
+            <button class="category-button" ion-button outline color="home" >{{item.categoria}}</button>
+            <span class="date-item" ion-text color="gray">{{item.fechaDesde * 1000 | date:'dd/MM/yy' :'UTC'}}</span>
+            <!-- <ion-note>Cr. Alberto Andrés Guerrero</ion-note> -->
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll *ngIf="!error" threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content color="light" loadingSpinner="crescent" loadingText="Cargando mas resultados...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-item no-lines text-center *ngIf="error">
+      </ion-item>
+</ion-content>

@@ -1,0 +1,10 @@
+keytool -genkey -v -keystore cpce_capacitacion.keystore -alias cpce_capacitacion -keyalg RSA -keysize 2048 -validity 10000
+Pass: cpce_capacitacion
+
+export ANDROID_HOME=/Users/sebastian/Library/Android/sdk
+
+cp /Users/sebastian/Sites/diproach/projects/cpce-capacitacion/platforms/android/app/build/outputs/bundle/release/app.aab .
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cpce_capacitacion.keystore app.aab cpce_capacitacion
+
+~/Library/Android/sdk/build-tools/27.0.3/zipalign -v 4 app.aab cpce_capacitacion_v1.aab

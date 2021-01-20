@@ -1,0 +1,26 @@
+page-my-courses {
+    .note-md {
+        color: #c5c5c5;
+        font-size: 1.2rem;
+    }
+
+    .qr-icon {
+        width: 3rem;
+    }
+
+      .day {
+      font-size: 2.2rem;
+    }
+  
+  .month {
+    color: color($colors, present);
+    font-size: 1.6rem;
+  }
+
+  .card-style {
+    padding: 6px 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+}

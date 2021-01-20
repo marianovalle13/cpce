@@ -1,0 +1,105 @@
+<ion-content>
+    <ion-grid class="grid-logo">
+        <ion-row>
+            <ion-col col-2></ion-col>
+            <ion-col col-8>
+                <img src="assets/imgs/capacitacion_logo_white.png">
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <form class="cool-form" [formGroup]="formObject" (ngSubmit)="login(formObject.value)">
+
+        <ion-row class="class-inputs">
+            <ion-col col-1></ion-col>
+            <ion-col col-10>
+                <ion-item>
+                    <ion-label stacked>DNI</ion-label>
+                    <ion-input formControlName="dni" type="number"></ion-input>
+                    <div class="invalid-input-message"
+                        *ngIf="formObject.get('dni').invalid && formObject.get('dni').touched">
+                        * Debe ingresar su DNI
+                    </div>
+                </ion-item>
+
+                <!-- matricula -->
+                <p class="title">MATRICULA</p>                    
+                <ion-row>
+                    <ion-col col-3>
+                        <ion-item>
+                            <!-- <ion-label stacked></ion-label> -->
+                            <ion-input formControlName="m1" type="tel" maxlength="2"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-1>
+                        <!-- <ion-item >
+                            <ion-label stacked>-</ion-label>
+                        </ion-item> -->
+                        <p>-</p>
+                        
+                    </ion-col>  
+                    <ion-col col-5>
+                        <ion-item>
+                            <!-- <ion-label stacked></ion-label> -->
+                            <ion-input formControlName="m2" type="tel" maxlength="5"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-1>
+                        <!-- <ion-item >
+                            <ion-label stacked>-</ion-label>
+                        </ion-item> -->
+                        <p>-</p>
+                    </ion-col> 
+                    <ion-col col-2>
+                        <ion-item>
+                            <!-- <ion-label stacked></ion-label> -->
+                            <ion-input formControlName="m3" type="tel" maxlength="1"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <!-- <ion-item>
+                    <ion-label stacked>MATRÍCULA</ion-label>
+                    <ion-input formControlName="matricula" type="text"></ion-input>
+                </ion-item>
+                <div class="invalid-input-message"
+                    *ngIf="formObject.get('matricula').invalid && formObject.get('matricula').touched">
+                    * Ingrese la matricula de la siguiente forma 00-00000-0
+                </div> -->
+                <ion-item>
+                    <ion-label stacked>PIN</ion-label>
+                    <ion-input formControlName="pin" type="password"></ion-input>
+                    <div class="invalid-input-message"
+                        *ngIf="formObject.get('pin').invalid && formObject.get('pin').touched">
+                        * Debe ingresar un pin valido
+                    </div>
+                </ion-item>
+                
+                <!-- <ion-item margin-top> -->
+                    <ion-row padding-top margin-top>
+                        <ion-col col-2>
+                            <ion-checkbox color="dark"  [(ngModel)]="terms" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+                        </ion-col>
+                        <ion-col col-10>
+                            <span style="font-size: 1.4rem; color: white;">Acepto los <a style="color: rgba(189, 189, 192, 0.747); text-decoration: underline;" (click)="goToTerms()">términos y condiciones</a></span>
+                        </ion-col>
+                    </ion-row>
+                <!-- </ion-item> -->
+            </ion-col>
+            <ion-col col-1>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="class-inputs">
+            <ion-col col-2></ion-col>
+            <ion-col col-8>
+                <button [disabled]="!formObject.valid" ion-button block color="light">Ingresar</button>
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+        </ion-row>
+
+    </form>
+
+
+</ion-content>

@@ -1,0 +1,217 @@
+<ion-header *ngIf="tipo == 'Presencial' || tipo == '2'">
+    <ion-navbar class="background-present">
+        <ion-title color="light">
+            Detalle del curso
+        </ion-title>
+        <!-- link a descarga de archivos -->
+        <!-- <ion-buttons end *ngIf="item?.archivos.length > 0" [hidden]="!item?.inscripto">
+            <button ion-button icon-only (click)="goToDowmloads()">
+                <ion-icon color="light" name="archive"></ion-icon>
+            </button>
+        </ion-buttons> -->
+        <!-- ............................. -->
+    </ion-navbar>
+</ion-header>
+
+<ion-header *ngIf="tipo == 'Home' || tipo == '1'">
+    <ion-navbar class="background-home">
+        <ion-title color="light">
+            Detalle del curso
+        </ion-title>
+        <!-- link a descarga de archivos -->
+        <!-- <ion-buttons end *ngIf="item?.archivos.length > 0">
+            <button ion-button icon-only (click)="goToDowmloads()">
+                <ion-icon color="light" name="archive"></ion-icon>
+            </button>
+        </ion-buttons> -->
+        <!-- ............................. -->
+    </ion-navbar>
+</ion-header>
+
+<ion-header *ngIf="tipo == 'Online' || tipo == '3'">
+    <ion-navbar class="background-online">
+        <ion-title color="light">
+            Detalle del curso
+        </ion-title>
+        <!-- link a descarga de archivos -->
+        <!-- <ion-buttons end *ngIf="item?.archivos.length > 0" [hidden]="!item?.inscripto">
+            <button ion-button icon-only (click)="goToDowmloads()">
+                <ion-icon color="light" name="archive"></ion-icon>
+            </button>
+        </ion-buttons> -->
+        <!-- ............................. -->
+    </ion-navbar>
+</ion-header>
+
+<!-- Si el usuario ya ha pagado y el live es 0 -->
+<ion-header *ngIf="payed">
+    <ion-navbar class="background-online">
+        <ion-title color="light">
+            Detalle del curso
+        </ion-title>
+        <!-- link a descarga de archivos -->
+        <ion-buttons start >
+            <button ion-button color="light" (click)="goToHome()">
+                VOLVER
+            </button>
+        </ion-buttons>
+        <!-- ............................. -->
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <img class="class-img" src="{{imagenURL}}" onerror="this.src='assets/imgs/office.jpeg';">
+        <ion-row class="class-row">
+            <h2 style="color: white;" [innerHtml]="item?.titulo"></h2>
+        </ion-row>
+    </div>
+
+    <ion-list no-lines>
+        <div *ngFor="let item of item?.disertante">
+            <ion-item no-lines text-wrap>
+                <ion-avatar item-start *ngIf="item.foto">
+                    <img class="speaker-img" src="{{item.foto}}" onerror="this.src='assets/imgs/user.png';">
+                </ion-avatar>
+                <h2>{{item?.persona}}</h2>
+                <button item-right *ngIf="item?.cv" (click)="showCv()" ion-button outline color="primary">
+                    <ion-icon name="eye" style="padding-right: 5px"></ion-icon>VER CV
+                </button>
+            </ion-item>
+        </div>
+
+    </ion-list>
+
+
+    <!-- BOTONES PARA Temario y Archivos -->
+    <ion-row>
+        <ion-col col-6 *ngIf="item?.temario != ''">
+            <ion-card class="class-card-temary" (click)="downloadTemario()">
+                <ion-item style="font-size: 1rem;">
+                    <ion-label>TEMARIO</ion-label>
+                    <ion-icon item-end color="primary" name="download"></ion-icon>
+                </ion-item>
+            </ion-card>
+            <!-- <ion-icon style="font-size: 1.6em;" color="online" name="download" (click)="downloadTemario()"></ion-icon> -->
+        </ion-col>
+        <ion-col col-6>
+            <ion-card class="class-card-temary" *ngIf="item?.archivos?.length > 0" (click)="downloads()">
+                <ion-item style="font-size: 1rem;">
+                    <ion-label>MATERIAL</ion-label>
+                    <ion-icon item-end color="primary" name="archive"></ion-icon>
+                </ion-item>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+
+    <!-- BOTONES PARA ONLINE CLASS -->
+    <!-- <ion-row padding-right padding-left *ngIf="item?.archivos.length > 0" [hidden]="!item?.inscripto">
+        <ion-col col-6 text-left>
+            <ion-card class="class-card-temary" (click)="goToDowmloads()">
+                <ion-item style="font-size: 1rem;">
+                    <ion-label>MATERIAL</ion-label>
+                    <ion-icon item-end  color="online" name="archive" ></ion-icon>
+                </ion-item>
+            </ion-card>
+        </ion-col>
+        <ion-col col-6 text-right>
+            <ion-card class="class-card-temary" (click)="downloadTemario()">
+                <ion-item style="font-size: 1rem;">
+                    <ion-label>TEMARIO</ion-label>
+                        <ion-icon item-end color="online" name="download" ></ion-icon>
+                </ion-item>
+            </ion-card>
+            <ion-icon style="font-size: 1.6em;" color="online" name="download" (click)="downloadTemario()"></ion-icon>
+        </ion-col>
+    </ion-row> -->
+
+    <!-- <ion-row padding-top padding-right padding-left *ngIf="item?.archivos.length == 0 || !item?.inscripto">
+        <ion-col col-6>
+             TEMARIO         
+        </ion-col>
+        <ion-col col-6 text-right>
+            <ion-icon style="font-size: 1.6em;" color="online" name="download" (click)="downloadTemario()"></ion-icon>
+        </ion-col>
+    </ion-row> -->
+
+    <ion-card padding [hidden]="item?.live == 1" *ngIf="item?.temario" [innerHtml]="item?.temario">
+        <ion-card-header>
+            Presentacion
+        </ion-card-header>
+        <!-- <ion-card-content>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam illum eos magni voluptatem atque, hic quas rerum sunt repellat ut!
+        </ion-card-content> -->
+    </ion-card>
+
+    <ion-row *ngIf="tipo == 'Presencial' || tipo == '2'" padding-right padding-left padding-top>
+        <ion-col col-6>
+            DETALLES DEL CURSO
+        </ion-col>
+    </ion-row>
+    <ion-card *ngIf="tipo == 'Presencial' || tipo == '2'">
+        <ion-list>
+            <ion-item *ngIf="item?.cronograma" text-wrap>
+                <ion-icon item-start name="calendar"></ion-icon>
+                <ion-label>{{item?.cronograma}}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="item?.domicilio" text-wrap>
+                <ion-icon item-start name="pin"></ion-icon>
+                <ion-label [innerHtml]="item?.domicilio"></ion-label>
+            </ion-item>
+            <ion-item text-wrap *ngIf="item?.duracion">
+                <ion-icon item-start name="time"></ion-icon>
+                <ion-label>{{item?.duracion}} horas</ion-label>
+            </ion-item>
+            <ion-item text-wrap *ngIf="tipo == '2'">
+                <ion-icon item-start name="logo-usd"></ion-icon>
+                <ion-label>
+                    <p *ngFor="let item of item?.arancel">{{item.categoria}} {{item.precio}}</p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+
+</ion-content>
+
+
+
+<ion-footer [hidden]="isBusy" padding class="class-footer" no-border *ngIf="tipo == '2' || tipo == '3'">
+    <ion-row *ngIf="tipo == '2' && !item?.inscripto">
+        <button ion-button block color="present" (click)="goToPaymentPresent()">Inscribirse</button>
+    </ion-row>
+    <ion-row [hidden]="!item?.inscripto" *ngIf="tipo == '2'">
+        <button ion-button block color="present" disabled (click)="goToPaymentPresent()">Inscripto</button>
+    </ion-row>
+
+    <ion-row *ngIf="tipo == '3' && !item?.inscripto">
+        <button ion-button block color="online" (click)="goToPaymentOnline()">Inscribirse</button>
+    </ion-row>
+    <ion-row [hidden]="!item?.inscripto" *ngIf="tipo == '3'">
+        <button ion-button block color="online" *ngIf="item?.videos?.length == 1" (click)="openVideo()">Ver
+            Video</button>
+        <button ion-button block color="online" *ngIf="item?.videos?.length > 1" (click)="showVideos()">Ver
+            Videos</button>
+    </ion-row>
+</ion-footer>
+
+<ion-footer *ngIf="tipo == '1' || tipo == 'Home'" [hidden]="!item?.videos" padding class="class-footer" no-border>
+    <ion-row>
+        <button ion-button block color="home" *ngIf="item?.videos?.length  == 1" (click)="openVideo()">Ver
+            Video</button>
+        <button ion-button block color="home" *ngIf="item?.videos?.length > 1" (click)="showVideos()">Ver
+            Videos</button>
+    </ion-row>
+</ion-footer>
+
+
+<ion-footer *ngIf="tipo == 'Online'" [hidden]="!item?.videos?.length == 1" padding class="class-footer" no-border>
+    <ion-row>
+        <button ion-button block color="online" (click)="openVideo()">Ver Video</button>
+    </ion-row>
+</ion-footer>
+
+<ion-footer *ngIf="tipo == 'Online'" [hidden]="!item?.videos?.length > 1" padding class="class-footer" no-border>
+    <ion-row>
+        <button ion-button block color="online" (click)="showVideos()">Ver Videos</button>
+    </ion-row>
+</ion-footer>

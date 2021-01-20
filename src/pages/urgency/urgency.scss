@@ -1,0 +1,59 @@
+page-urgency {
+    .content {
+        background-color: rgb(229, 239, 242);
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    [col-1] {
+        margin-top: 12px;
+    }
+
+    .button-call {
+        border-radius: 4px;
+        height: 2.5em;
+        font-size: 1.3rem;
+        color: #fff;
+        margin: 0.4rem 0.2rem;
+        padding: 0 5px;
+        text-transform: lowercase;
+    }
+
+    .icon-class {
+        width: 18px;
+        padding-right: 5px;
+    }
+
+    .button-sinister {
+        width: 100%;
+        height: 5.3rem;
+        font-size: 1.5rem;
+        text-align: left;
+        font-weight: normal;
+    }
+
+    .icon-sir {
+        width: 55px;
+        padding-right: 25px;
+    }
+
+    ion-navbar.toolbar-md {
+        height: 35px;
+    }
+
+    // Ajustes ios
+
+    .toolbar-content-ios {
+        img {
+            width: 30%;
+        }
+    }
+
+    .toolbar-content-md {
+        img {
+            width: 40%;
+        }
+    }
+}

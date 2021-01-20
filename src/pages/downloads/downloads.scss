@@ -1,0 +1,33 @@
+page-downloads {
+
+  .toolbar-background {
+    background: color($colors, primary);
+}
+.toolbar-title-md {
+    padding: 0 12px;
+    font-size: 2rem;
+    font-weight: 500;
+    color:white;
+}
+
+  .swiper-slide img {
+    width: 100%;
+    height: 20rem;
+  }
+
+  .col-class {
+      padding: 0px;
+  }
+
+  .button-style{
+      height: 5rem;
+  }
+  .note-md {
+    color: #c5c5c5;
+    font-size: 1.2rem;
+}
+
+.class-footer{
+    background-color: rgb(240, 236, 236);
+  }
+}

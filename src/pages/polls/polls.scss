@@ -1,0 +1,60 @@
+page-polls {
+    .toolbar-background {
+        background: color($colors, primary);
+    }
+
+    .toolbar-title-md {
+        padding: 0 12px;
+        font-size: 2rem;
+        font-weight: 500;
+        color: white;
+    }
+
+    .content {
+        background-color: rgb(240, 236, 236);
+
+        .class-note {
+            color: gray;
+            font-size: 1.4rem;
+        }
+
+        .suggestion {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid lightgray;
+            padding: .5em;
+        }
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: 20rem;
+    }
+
+    .col-class {
+        padding: 0px;
+    }
+
+    .button-style {
+        height: 5rem;
+    }
+
+    .note-md {
+        color: #c5c5c5;
+        font-size: 1.2rem;
+    }
+
+    .button-md {
+        border-radius: 2px;
+        overflow: hidden;
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    .button-end {
+        border-radius: 2px;
+        overflow: hidden;
+        height: 3.6rem;
+        font-size: 1.4rem;
+    }
+}

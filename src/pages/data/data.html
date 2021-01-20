@@ -1,0 +1,53 @@
+<ion-header no-border>
+    <ion-navbar>
+        <ion-row>
+            <ion-title>
+                Siniestros 24hs
+                <p class="subtitle">Seleccione una opción.</p>
+            </ion-title>
+            <img src="assets/imgs/close.png" width="17%" height="17%" float-right padding (click)="close()">
+        </ion-row>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-row class="row-center mt-2">
+        <ion-col col-12 text-center>
+            <button ion-button class="button-sinister" round (click)="UrgencyDate()">
+                <ion-col col-3>
+                    <img class="icon-class2" src="assets/imgs/sirena.png">
+                </ion-col>
+               <ion-col col-9>
+                ASESORAMIENTO DDN <br> URGENCIAS 24HS
+               </ion-col>   
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row margin-top>
+        <ion-col col-12 text-center>
+            <button ion-button class="button-sinister" round color="tertiary" (click)="tertiaryDate()">
+                <ion-col col-3>
+                    <img class="icon-class" src="assets/imgs/people.png">
+                </ion-col>
+                <ion-col col-9>
+                QUE DATOS PEDIR <br> AL TERCERO
+                </ion-col>
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row margin-top>
+        <ion-col col-12 text-center>
+            <button ion-button class="button-sinister" round color="tertiary" (click)="complaintsDate()">
+                <ion-col col-3>
+                    <img class="icon-class" src="assets/imgs/write.png">
+                </ion-col>
+                <ion-col col-9>
+                FORMULARIOS Y <br> DENUNCIAS
+                </ion-col>
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-content>

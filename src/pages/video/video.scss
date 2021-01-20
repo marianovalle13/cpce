@@ -1,0 +1,133 @@
+page-video {
+    .scroll-content {
+        @media (orientation: portrait) {
+            margin-top: 38vh !important;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .iframe-container {
+        width: 100% !important;
+
+        @media (orientation: portrait) {
+            height: 33vh !important;
+            position: absolute !important;
+            background: #f0f0f0;
+        }
+
+        iframe {
+            margin-top: 0;
+
+            .vp-center {
+                align-items: flex-start !important;
+                box-shadow: 3px 3px 10px 3px rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+
+    @media (orientation: landscape) {
+        .iframe-container {
+            height: 100% !important;
+        }
+
+        // .conversations, .send-message {
+        //     display: none;
+        // }
+
+        .fixed-content {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .class-footer {
+        background-color: rgb(240, 236, 236);
+    }
+
+    .footer-input {
+        bottom: 0px !important;
+        position: fixed;
+
+        .toolbar-background {
+            background: color($colors, primary);
+        }
+
+        .item {
+            // border-radius: 50px;
+            color: white;
+            background: color($colors, primary);
+        }
+
+        .send-btn {
+            color: color($colors, online);
+
+            // color:  color($colors, );
+            .icon {
+                color: "#8f7f7f";
+            }
+        }
+    }
+
+    .list > .item {
+        > .item-inner {
+            border-bottom: none;
+        }
+    }
+
+    .conversations {
+        padding: .5em;
+        padding-bottom: 50px;
+
+        //padding-top: 2em;
+        //margin-top: 40vh;
+
+        .item {
+            border-radius: 20px;
+            width: 90%;
+            margin-bottom: 10px;
+            background: #eeeeee;
+
+            &.self {
+                background: #c4edfd;
+                margin-left: 10%;
+            }
+
+            .label {
+                margin: 5px;
+            }
+
+            .date {
+                font-style: italic;
+                font-size: .8em;
+                text-align: right;
+                padding-right: .5em;
+            }
+        }
+    }
+
+    // .scroll-content {
+    //     left: 0;
+    //     right: 0;
+    //     margin-bottom: 40px !important;
+    //     top: 0;
+    //     bottom: 0;
+    //     position: absolute;
+    //     z-index: 1;
+    //     display: block;
+    //     overflow-x: hidden;
+    //     overflow-y: scroll;
+    //     -webkit-overflow-scrolling: touch;
+    //     will-change: scroll-position;
+    //     contain: size style layout;
+    // }
+
+    .comment {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        padding: .5em;
+    }
+
+    .temary-card {
+        margin-top: 0;
+    }
+}

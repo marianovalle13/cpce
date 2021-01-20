@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Cursos Online
+        </ion-title>
+        <!-- <ion-buttons end>
+            <button (click)="presentPopover($event)" ion-button icon-only>
+                <ion-icon color="light" name="options"></ion-icon>
+            </button>
+        </ion-buttons> -->
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <!-- <ion-searchbar placeholder="Buscar.." [showCancelButton]="shouldShowCancel" 
+      (keyup.enter)="searchTrainings($event.target.value)"
+      (ionClear)="clearTrainings()"></ion-searchbar> -->
+    <ion-item no-lines text-center *ngIf="isBusy">
+        <ion-spinner name="dots" color="primary"></ion-spinner>
+      </ion-item>
+    <ion-list>
+        <ion-item no-lines text-center *ngIf="trainings.length == 0 && !isBusy">
+            <span style="color: gray">
+                <ion-icon name="eye-off" class="icon-space-right"></ion-icon>No hay resultados
+            </span>
+       </ion-item>
+        <ion-item text-wrap *ngFor="let item of trainings" (click)="goToCourse(item)">
+
+            <!-- live true -->
+            <!-- <ion-thumbnail item-start *ngIf="item?.live == 1"> -->
+            <ion-thumbnail class="thumb" item-start *ngIf="!isPast(item?.liveHasta)">
+                <ion-card>
+                    <ion-card-content class="card-style" text-center>
+                        <h2 class="day">EN VIVO</h2>
+                        <p class="month">{{item.fechaDesde * 1000 | date: 'dd/MM' : 'UTC'}}</p>
+                        <ion-note style="font-size: 1rem">{{item.fechaDesde * 1000 | date: 'H:mm' : 'UTC'}} hs</ion-note>
+                    </ion-card-content>
+                </ion-card>
+            </ion-thumbnail>
+
+            <!-- live false -->
+            <!-- <ion-thumbnail item-start *ngIf="item?.live == 0"> -->
+            <ion-thumbnail class="thumb" item-start *ngIf="isPast(item?.liveHasta,item?.titulo)">
+                <ion-card>
+                    <ion-card-content class="card-style" text-center>
+                        <h2 class="online-past">YA EMITIDO</h2>
+                        <div style="padding-top: 8px">
+                        <ion-icon style="font-size: 2rem;" class="month" name="desktop"></ion-icon>
+                        <ion-icon style="font-size: 2rem;" class="month" name="logo-rss"></ion-icon>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-thumbnail>
+
+
+            <!-- <ion-thumbnail item-start>
+                <img src="{{item?.imagenURL}}" onerror="this.src='assets/imgs/modalidad-consejo3.jpg';">
+            </ion-thumbnail> -->
+            <h2 class="class-h2" [innerHtml]="item.titulo"></h2>
+            <!-- <p [innerHtml]="item.categoria"></p> -->
+            <button class="category-button" ion-button outline color="online">{{item.categoria}}</button>
+            <span class="date-item" ion-text color="gray" *ngIf="isPast(item?.liveHasta)">{{item?.liveHasta * 1000 | date: 'dd/MM/yy' : 'UTC'}}</span>
+            <!-- <ion-note>Cr. Alberto Andrés Guerrero</ion-note> -->
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll *ngIf="!error" threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content color="light" loadingSpinner="crescent" loadingText="Cargando mas resultados...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-item no-lines text-center *ngIf="error">
+      </ion-item>
+</ion-content>

@@ -1,0 +1,31 @@
+page-third {
+    .content {
+        background-color: rgb(229, 239, 242);
+    }
+
+    p {
+        font-size: 1.1em;
+    }
+
+    [col-1] {
+        margin-top: 12px;
+    }
+
+    ion-navbar.toolbar-md {
+        height: 35px;
+    }
+
+    // Ajustes ios
+
+    .toolbar-content-ios {
+        img {
+            width: 30%;
+        }
+    }
+
+    .toolbar-content-md {
+        img {
+            width: 40%;
+        }
+    }
+}

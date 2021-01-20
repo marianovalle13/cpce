@@ -1,0 +1,275 @@
+//utilities
+.center-v-h {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transparent {
+    background: transparent;
+}
+
+// Sidebar with avatar
+.sidebar-menu {
+    background-color: color($colors, primary);
+
+    .item {
+        background-color: transparent;
+        color: color($colors, semidark);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .avatar-item {
+        min-height: 15vh;
+        margin-bottom: 1em;
+        border-bottom: none;
+
+        img {
+            width: 60px !important;
+            height: 60px !important;
+        }
+
+        .name {
+            font-size: 1.3em;
+            font-weight: 400;
+            color: color($colors, light);
+        }
+
+        .subtitle {
+            font-size: .9em;
+            font-weight: 400;
+            color: color($colors, gray);
+        }
+    }
+
+    .menu-item {
+        min-height: 8vh;
+
+        .label {
+            text-transform: uppercase;
+        }
+    }
+}
+
+// Items
+.custom-item {
+    padding-left: 0;
+
+    @extend .transparent;
+
+    .badge {
+        border-radius: 30px;
+    }
+
+    .item-inner {
+        border-color: color($colors, gray) !important;
+
+        h2 {
+            font-size: 1em;
+        }
+
+        p {
+            font-size: .9em;
+        }
+
+        .date {
+            color: color($colors, gray);
+            font-style: italic;
+            padding-right: .1em;
+        }
+    }
+}
+
+// Cards
+.custom-card {
+    border: 1px solid color($colors, primary);
+    background: none;
+    box-shadow: none;
+}
+
+// Alerts
+.select-alert {
+    .alert-title {
+        color: white;
+    }
+
+    .alert-wrapper {
+        background-color: color($colors, semidark);
+    }
+
+    .alert-button {
+        color: white;
+    }
+
+    .alert-radio-label {
+        color: #787878;
+    }
+
+    .alert-radio-group {
+        border-top: 1px solid color($colors, gray);
+        border-bottom: 1px solid color($colors, gray);
+    }
+}
+
+// Loading sin fondo
+.loading-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+
+    .loading-content {
+        display: none;
+    }
+
+    .spinner {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+
+// dark alert
+.dark-alert {
+    .alert-wrapper {
+        background: color($colors, semidark);
+
+        .alert-title {
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .alert-message {
+            color: white;
+        }
+
+        .alert-input {
+            color: color($colors, primary);
+        }
+
+        .alert-checkbox-group {
+            border: none !important;
+
+            .alert-checkbox-label {
+                color: gray !important;
+            }
+        }
+    }
+}
+
+// Modal con bordes redondeados, centrado y sin pantalla completa
+.cool-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .modal-wrapper {
+        width: 80%;
+        height: 80%;
+        border-radius: 10px;
+    }
+}
+
+// Forms
+// Aplicar clase cool-form en <form>
+// Fondos transparentes, espaciados, etc..
+// Ideal para forms en fondos oscuros
+.cool-form {
+    .list-ios > .item-block:first-child {
+        border-top: none;
+    }
+
+    .list-ios > .item-block:last-child {
+        border-bottom: none;
+    }
+
+    .item {
+        background: rgba($color: #FFFFFF, $alpha: 0.2);
+        color: white;
+        margin-bottom: .4em;
+        padding-left: 0;
+        border-radius: 5px;
+
+        .item-inner {
+            border-bottom: none;
+            padding-left: 1em;
+        }
+
+        .label {
+            color: white;
+        }
+
+        .radio-icon {
+            border-color: white;
+        }
+
+        .select-icon-inner {
+            color: white;
+        }
+
+        &.transparent {
+            background: transparent;
+        }
+
+        p {
+            color: white;
+        }
+
+        .text-input::-webkit-input-placeholder {
+            opacity: .3;
+            color: white;
+        }
+    }
+
+    .list-header {
+        background: transparent; //border-bottom: 1px solid white;
+        border-top: none;
+        padding-left: 0;
+
+        .icon {
+            opacity: .5;
+        }
+
+        .label {
+            text-align: left;
+            font-weight: bold;
+            opacity: .5;
+        }
+
+        .item-inner {
+            //margin-left: 0.5em !important;
+       
+        }
+
+        &.list-header-ios {
+            border-bottom: none;
+        }
+    }
+
+    .separator {
+        height: 1em;
+    }
+}
+
+// Otra variante de Forms
+.custom-form {
+    .item {
+        background-color: rgba(255, 255, 255, 0.05);
+        margin-bottom: 1em;
+
+        .label {
+            font-size: 1.4rem;
+            color: color($colors, gray);
+        }
+    }
+
+    //Validación de formularios en success
+    .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+    .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+        //border-bottom: 0;
+        box-shadow: none;
+    }
+
+    .invalid-input-message {
+        color: red;
+        font-size: 90%;
+        margin-top: 0.5em;
+    }
+}

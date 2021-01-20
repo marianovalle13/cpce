@@ -1,0 +1,98 @@
+<ion-header>
+    <ion-navbar text-center>
+        <ion-row>
+            <ion-col col-3>
+            </ion-col>
+            <ion-col col-6>
+                <img src="assets/imgs/capacitacion_logo_white.png">
+            </ion-col>
+            <ion-col col-3>
+            </ion-col>
+        </ion-row>
+    </ion-navbar>
+    <ion-segment [(ngModel)]="cursos" (ionChange)="loadManager()">
+        <ion-segment-button value="pendientes">
+            Próximos
+        </ion-segment-button>
+        <ion-segment-button value="realizadas">
+            Finalizados
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+<ion-content>
+    <!-- <div padding>
+        <ion-segment [(ngModel)]="cursos">
+            <ion-segment-button value="pendientes">
+                Pendientes
+            </ion-segment-button>
+            <ion-segment-button value="realizadas">
+                Realizadas
+            </ion-segment-button>
+        </ion-segment>
+    </div> -->
+
+    <div [ngSwitch]="cursos">
+        <ion-list *ngSwitchCase="'pendientes'" >
+            <ion-item no-lines text-center *ngIf="isBusy">
+                <ion-spinner name="dots" color="primary"></ion-spinner>
+            </ion-item>
+            <ion-item no-lines text-center *ngIf="pendingList.length == 0 && !isBusy">
+                <span style="color: gray">
+                    <ion-icon name="eye-off" class="icon-space-right"></ion-icon>No hay resultados
+                </span>
+            </ion-item>
+            <ion-item *ngFor="let pending of pendingList" text-wrap>
+            <div (click)="goToDetail(pending.id, pending.tipo, pending)">
+                <h2>{{pending?.titulo}}</h2>
+                <p>{{pending?.fechaHasta * 1000 | date: 'dd/MM' : 'UTC'}} de {{pending?.horaDesde}} a {{pending?.horaHasta}}hs</p>
+                <ion-note>{{pending?.disertante[0]?.persona}}</ion-note>
+            </div>
+                <ion-icon *ngIf="pending?.docs == 1" [hidden]="pending?.tipo == 'Home'" item-end name="copy" color="secondary" (click)="goToDownloads($event,pending?.id)"></ion-icon>
+                <img *ngIf="pending?.qr == 1 || (pending?.tipo == 'Presencial' && pending?.status == 1)" [hidden]="pending?.tipo == 'Home' || pending?.tipo == 'Online'" src="assets/imgs/qr.svg" item-end class="icon-space qr-icon" (click)="goToQr($event, pending?.id)">
+                
+                <!-- <img ion-icon class="icon-space" src="assets/imgs/qr-code.png" (click)="goToQr()"> -->
+            </ion-item>
+            <ion-infinite-scroll *ngIf="!error" threshold="100px" (ionInfinite)="loadDataPending($event)">
+                <ion-infinite-scroll-content color="light" loadingSpinner="crescent" loadingText="Cargando mas resultados...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+            <ion-item no-lines text-center *ngIf="error">
+               
+              </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'realizadas'" >
+            <ion-item no-lines text-center *ngIf="isBusy">
+                <ion-spinner name="dots" color="primary"></ion-spinner>
+            </ion-item>
+            <ion-item no-lines text-center *ngIf="doneList.length == 0 && !isBusy">
+                <span style="color: gray">
+                    <ion-icon name="eye-off" class="icon-space-right"></ion-icon>No hay resultados
+                </span>
+            </ion-item>
+            <ion-item *ngFor="let done of doneList" text-wrap>
+            <div (click)="goToDetail(done.id, done.tipo, done)">
+                <h2 >{{done?.titulo}}</h2>
+                <p>{{done?.fechaDesde * 1000 | date: 'dd/MM/yyyy' : 'UTC'}}</p>
+                <ion-note >{{done?.disertante[0]?.persona}}</ion-note>
+            </div>
+                <ion-icon *ngIf="done?.docs == 1" item-end name="copy" color="secondary" (click)="goToDownloads($event, done?.id)"></ion-icon>
+                <!-- <ion-icon item-end class="icon-space" name="list" color="secondary"
+                    (click)="goToPolls($event, done.id)"> -->
+                <ion-icon   item-end class="icon-space" name="list" *ngIf="done?.encuesta == 1" [hidden]="done?.tipo == 'Home' || done?.certificado == 1" color="secondary" (click)="goToPolls($event, done.id)">
+                </ion-icon>
+                    <ion-icon *ngIf="done?.certificado == 1" [hidden]="done?.tipo == 'Home'" item-end name="ribbon" color="success" (click)="goToCertified($event, done?.id)"></ion-icon>
+            </ion-item>
+            <ion-infinite-scroll *ngIf="!error" threshold="100px" (ionInfinite)="loadDataDone($event)">
+                <ion-infinite-scroll-content color="light" loadingSpinner="crescent" loadingText="Cargando mas resultados...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+            <ion-item no-lines text-center *ngIf="error">
+                
+              </ion-item>
+
+        </ion-list>
+        
+    </div>
+</ion-content>

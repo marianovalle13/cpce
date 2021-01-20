@@ -1,0 +1,15 @@
+<ion-list>
+  <button [ngClass]="{'active': !filterSelected}" ion-item (click)="close()">Todo</button>
+
+
+  <div *ngFor="let category of categories">
+      <button ion-item [ngClass]="{'active': category.selected}" (click)="close(category)">{{ category?.nombre}}</button>
+      <!-- <button ion-item (click)="close(item)">Agropecuaria</button>
+      <button ion-item (click)="close(item)">Auditoria</button>
+      <button ion-item (click)="close(item)">Charla</button>
+      <button ion-item (click)="close(item)">Comunicación</button>
+      <button ion-item (click)="close(item)">Conferencias</button> -->
+  </div>
+ 
+
+</ion-list>

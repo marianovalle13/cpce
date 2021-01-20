@@ -1,0 +1,46 @@
+page-login {
+    .input-cover {
+        display: none;
+    }
+
+    .content {
+        background-color: color($colors, primary);
+
+        .grid-logo {
+            margin-top: 15vh;
+        }
+
+        .class-inputs {
+            margin-top: 10vh;
+            p {
+                color: white;
+                margin-bottom: 0;
+                &.title {
+                    font-size: 0.9em;
+                    margin-top: 1.5em;
+                }
+            }
+        }
+
+        // .input-cover {
+        //   background-color: color($colors, primary);
+
+        // }
+
+        .item {
+            color: white;
+            background-color: color($colors, primary);
+            padding-left: 0px;
+        }
+
+        .button-inner {
+            color: color($colors, primary);
+        }
+
+        .label[stacked], .label[floating] {
+            margin-left: 0;
+            margin-bottom: 0;
+            color: white;
+        }
+    }
+}

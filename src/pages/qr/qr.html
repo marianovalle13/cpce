@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Acreditación
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-grid style="margin-top: 10vh;">
+    <ion-card>
+        <ion-card-content>
+            <ion-row>
+                <ion-col col-4>
+                </ion-col>
+                <ion-col col-4 text-center>
+                    <img src="assets/imgs/check.png">
+                </ion-col>
+                <ion-col col-4>
+                </ion-col>
+            </ion-row>
+
+            
+                <ion-row style="margin-top: 1rem;">
+                    <ion-col col-2>
+                    </ion-col>
+                    <ion-col col-8 text-center>
+                        <button ion-button color="primary" (click)="openQr()">
+                            <img src="assets/imgs/qr-light.png" item-end class="icon-space-right qr-icon">Ver Código QR
+                        </button>
+                    </ion-col>
+                    <ion-col col-2>
+                    </ion-col>
+                </ion-row>
+            
+                <ion-row>
+                    <ion-col col-2>
+                    </ion-col>
+                    <ion-col col-8 text-center>
+                        Presente este código al momento de ingresar al curso
+                    </ion-col>
+                    <ion-col col-2>
+                    </ion-col>
+                </ion-row>
+            
+            </ion-card-content>
+        </ion-card>
+    </ion-grid>
+</ion-content>

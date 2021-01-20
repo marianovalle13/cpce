@@ -1,0 +1,142 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Pago
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<!-- PRESENT -->
+<ion-content *ngIf="presentId">
+    <ion-grid style="margin-top: 4vh;">
+        <ion-card>
+            <ion-card-content>
+
+                <ion-row>
+                    <ion-col col-2>
+                    </ion-col>
+                    <ion-col col-8 text-center>
+                        <h3 class="pay-text">Pagar Curso</h3>
+                    </ion-col>
+                    <ion-col col-2>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-1>
+                    </ion-col>
+                    <ion-col col-10 text-center>
+                        <p style="font-size: 1rem;" >{{texto}}</p>
+                    </ion-col>
+                    <ion-col col-1>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-12 text-center *ngFor="let data of paymentOptionsPresent?.data?.data?.categoria">
+                        <ion-label style="font-size: 1.4rem;">{{data?.CAT_DESCRI}}</ion-label>
+                        <p class="pay-text">${{data?.ACA_MONTO}}</p>
+                    </ion-col>
+                    <ion-col col-12>
+                        <ion-item>
+                            <ion-label floating>Método de pago</ion-label>
+                            <ion-select [(ngModel)]="paymentMethodSelected" (ionChange)="scrollToBottom()">
+                                <ion-option *ngFor="let item of paymentOptionsPresent?.data?.data?.metodoPago" value="{{item?.FRM_CODIGO}}">{{item?.FRM_DESCRI}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <!-- oculta en caso de que no se seleccione metodo de pago DEBITO -->
+                        <ion-item *ngIf="paymentMethodSelected == 10">
+                            <ion-label floating>Cuotas</ion-label>
+                            <ion-select  [(ngModel)]="paymentQuotesSelected" (ionChange)="getQuotesPres()">
+                                <ion-option *ngFor="let item of paymentOptionsPresent?.data?.data?.cuotasArr" [selected]="item == 1">{{item}}</ion-option>
+                                <!-- <ion-option value="{{paymentOptionsPresent?.data?.data?.cuotasArr}}">
+                                    {{paymentOptionsPresent?.data?.data?.cuotas}}</ion-option> -->
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    
+                </ion-row>
+                
+            </ion-card-content>
+        </ion-card>
+        
+    </ion-grid>
+</ion-content>
+
+<ion-footer *ngIf="presentId" padding class="class-footer" no-border>
+    <button *ngIf="paymentMethodSelected == 10" ion-button block color="secondary" (click)="payTrainingPresent()">Confirmar</button>
+    <button *ngIf="paymentMethodSelected != 10 && paymentMethodSelected" ion-button block color="secondary" (click)="payTrainingPresent()">Confirmar</button>
+    <button *ngIf="!paymentMethodSelected" ion-button block disabled color="secondary">Confirmar</button>
+</ion-footer>
+
+
+
+
+<!-- ONLINE -->
+<ion-content *ngIf="onlineId">
+    <ion-grid style="margin-top: 4vh;">
+        <ion-card>
+            <ion-card-content>
+
+                <ion-row>
+                    <ion-col col-2>
+                    </ion-col>
+                    <ion-col col-8 text-center>
+                        <h3 class="pay-text">Pagar Curso</h3>
+                    </ion-col>
+                    <ion-col col-2>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-1>
+                    </ion-col>
+                    <ion-col col-10 text-center *ngIf="paymentOptionsOnline?.data?.data?.categoria[0].ACA_MONTO != 0">
+                        <p style="font-size: 1rem;">{{texto}}</p>
+                    </ion-col>
+                    <ion-col col-1>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-12 text-center *ngFor="let data of paymentOptionsOnline?.data?.data?.categoria">
+                        <ion-label style="font-size: 1.4rem;">{{data?.CAT_DESCRI}}</ion-label>
+                        <p class="pay-text">${{data?.ACA_MONTO}}</p>
+                    </ion-col>
+                    <ion-col col-2>
+                    </ion-col>
+                    <ion-col col-8 *ngIf="paymentOptionsOnline?.data?.data?.categoria[0]?.ACA_MONTO != 0">
+                        <ion-item>
+                            <ion-label floating>Método de pago</ion-label>
+                            <ion-select  [(ngModel)]="paymentMethodSelected">
+                                <ion-option *ngFor="let item of paymentOptionsOnline?.data?.data?.metodoPago" value="{{item?.FRM_CODIGO}}">
+                                    {{item?.FRM_DESCRI}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item *ngIf="paymentMethodSelected == 10">
+                            <ion-label floating>Cuotas</ion-label>
+                            <ion-select [(ngModel)]="paymentQuotesSelected" (ionChange)="getQuotesOnl()">
+                                <ion-option *ngFor="let item of paymentOptionsOnline?.data?.data?.cuotasArr" [selected]="item == 1">{{item}}</ion-option>
+                                <!-- <ion-option value="{{paymentOptionsPresent?.data?.data?.cuotasArr}}">
+                                                            {{paymentOptionsPresent?.data?.data?.cuotas}}</ion-option> -->
+                            </ion-select>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-2>
+                    </ion-col>
+                </ion-row>
+
+            </ion-card-content>
+        </ion-card>
+
+    </ion-grid>
+</ion-content>
+
+
+
+<ion-footer *ngIf="onlineId" padding class="class-footer" no-border>
+    <button ion-button block *ngIf="paymentMethodSelected == 10" color="secondary" (click)="payTrainingOnline()">Confirmar</button>
+    <button ion-button block *ngIf="paymentMethodSelected != 10" color="secondary"
+        (click)="payTrainingOnline()">Confirmar</button>
+    <!-- <button *ngIf="!paymentMethodSelected" ion-button block disabled color="secondary" (click)="goToCongrats()">Confirmar</button> -->
+</ion-footer>

@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Cursos presenciales
+        </ion-title>
+        <!-- <ion-buttons end>
+            <button (click)="presentPopover($event)" ion-button icon-only>
+                <ion-icon color="light" name="options"></ion-icon>
+            </button>
+        </ion-buttons> -->
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-searchbar placeholder="Buscar.." [showCancelButton]="shouldShowCancel" 
+      (keyup)="searchTrainings($event.target.value)"
+      (ionClear)="clearTrainings()"></ion-searchbar>
+        <ion-item no-lines text-center *ngIf="isBusy">
+          <ion-spinner name="dots" color="primary"></ion-spinner>
+        </ion-item>
+        <ion-item no-lines text-center *ngIf="trainings.length == 0 && !isBusy">
+            <span style="color: gray">
+                <ion-icon name="eye-off" class="icon-space-right"></ion-icon>No hay resultados
+            </span>
+        </ion-item>
+    <ion-list>
+        <ion-item text-wrap *ngFor="let item of trainings" (click)="goToCourse(item.id, item.imagenURL, item.tipo)">
+            <ion-thumbnail item-start>
+                <ion-card>
+                    <ion-card-content class="card-style" text-center>
+                        <h2 class="day">{{item.fechaDesde * 1000 | date: 'dd'}}</h2>
+                        <!-- fechas dependiendo el valor: (solucion rapida) -->
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 1">ENE</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 2">FEB</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 3">MAR</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 4">ABR</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 5">MAY</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 6">JUN</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 7">JUL</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 8">AGO</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 9">SEP</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 10">OCT</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 11">NOV</p>
+                        <p class="month" *ngIf="(item.fechaDesde * 1000 | date: 'MM') == 12">DIC</p>
+                        <!-- .................. -->
+                        <ion-note>{{item.fechaDesde | date: 'hh:mm aaa'}}</ion-note>
+                    </ion-card-content>
+                </ion-card>
+            </ion-thumbnail>
+            <h2 class="class-h2" [innerHtml]="item.titulo"></h2>
+            <p [innerHtml]="item.delegacion"></p>
+            <!-- <ion-note>Cr. Alberto Andrés Guerrero</ion-note> -->
+        </ion-item>
+    
+    </ion-list>
+    <ion-infinite-scroll *ngIf="!error" threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content color="light" loadingSpinner="crescent" loadingText="Cargando mas resultados...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-item no-lines text-center *ngIf="error">
+        
+      </ion-item>
+</ion-content>

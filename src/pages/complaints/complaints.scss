@@ -1,0 +1,48 @@
+page-complaints {
+    .content {
+        background-color: rgb(229, 239, 242);
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    .button-sinister {
+        width: 100%;
+        height: 100%;
+        font-size: 1.7rem;
+    }
+
+    .icon-sir {
+        width: 55px;
+        padding-right: 25px;
+    }
+
+    .button-form {
+        width: 100%;
+        font-size: 2rem;
+        border-radius: 5px;
+    }
+
+    .class-button {
+        background-color: color($colors, dark);
+        border-radius: 5px;
+    }
+
+    ion-navbar.toolbar-md {
+        height: 35px;
+    }
+
+    // Ajustes ios
+
+    .toolbar-content-ios {
+        img {
+            width: 30%;
+        }
+    }
+    .toolbar-content-md {
+        img {
+            width: 40%;
+        }
+    }
+}

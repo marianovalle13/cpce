@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Material del Curso
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list >
+        <ion-item *ngFor="let archive of archives" text-wrap >
+            <ion-label>{{archive?.archivo}}</ion-label>
+            <ion-icon item-end color="secondary" class="icon-space-right" name="share" (click)="shareButton(archive)"></ion-icon>
+            <ion-icon item-end color="secondary" name="download" (click)="downloadArchive(archive.link)"></ion-icon>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+
+<ion-footer  padding class="class-footer" no-border>
+    <ion-row>
+        <button ion-button block color="online" (click)="alertMail()">
+            <ion-icon name="mail" class="icon-space-right"></ion-icon>
+            Enviar material</button>
+    </ion-row>
+</ion-footer>

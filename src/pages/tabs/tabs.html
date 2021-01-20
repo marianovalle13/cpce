@@ -1,0 +1,6 @@
+<ion-tabs #Tabs color="primary">
+  <ion-tab [root]="tabHome" tabTitle="Inicio" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tabMyCourses" tabTitle="Mis Cursos" tabIcon="list"></ion-tab>
+  <ion-tab (ionSelect)="openWsp()" tabTitle="Contacto" tabIcon="logo-whatsapp"></ion-tab>
+  <!-- <ion-tab (ionSelect)="presentWspModal()" tabTitle="Contacto" tabIcon="logo-whatsapp"></ion-tab> -->
+</ion-tabs>

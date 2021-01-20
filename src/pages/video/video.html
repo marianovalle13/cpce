@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{titulo}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="downloads()" *ngIf="item?.archivos?.length > 0">
+        <ion-icon name="archive" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #content id="content">
+  <div class="iframe-container" ion-fixed [hidden]="keyboardPresent">
+    <iframe #iframe id="iframe" [src]="vimeoURL" height="100%" width="100%" frameborder="0" playsinline="true"
+      webkitallowfullscreen allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- <ion-card padding-top class="temary-card" *ngIf="item?.archivos?.length > 0" [hidden]="live == 1" (click)="downloads()">
+    <ion-item style="font-size: 1rem;">
+      <ion-label>DESCARGAR MATERIAL</ion-label>
+      <ion-icon item-end color="primary" name="archive"></ion-icon>
+    </ion-item>
+  </ion-card> -->
+  <!-- <ion-card *ngIf="live">
+    <ion-card-header>
+      Consultar
+      <button small ion-button item-end color="secondary" (click)="sendComment()" clear float-right>
+        <ion-icon name="send" color="white" class="icon-space-right"></ion-icon>Enviar
+      </button>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <textarea class="comment" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"
+          placeholder="Escribe aquí tu consulta..." rows="5"></textarea>
+      </ion-row>
+    </ion-card-content>
+  </ion-card> -->
+
+  <div *ngIf="live == 1">
+    <ion-list>
+      <ion-item no-lines text-center *ngIf="isBusy">
+        <ion-spinner name="dots" color="primary"></ion-spinner>
+      </ion-item>
+      <ion-item no-lines text-center *ngIf="messages?.length == 0 && !isBusy">
+        <span style="color: gray">
+          <ion-icon name="eye-off" class="icon-space-right"></ion-icon>No hay mensajes
+        </span>
+      </ion-item>
+    </ion-list>
+    <ion-list class="conversations" [hidden]="landscape">
+      <ion-item text-wrap *ngFor="let item of messages" [ngClass]="{'self': item.PER_NRODOC == user.nroDocumento}">
+        <ion-avatar item-start>
+          <img src="{{item?.foto}}" onerror="this.src='assets/imgs/user.png';">
+        </ion-avatar>
+        <p><strong>{{item?.PER_NOMBRE}} {{item?.PER_APELLI}}: </strong>{{item?.chat}}</p>
+        <p class="date">{{item?.fecha * 1000 | date:'dd/MM/yy H:mm' : 'UTC'}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+  <ion-toolbar class="footer-input" *ngIf="live == 1" [hidden]="landscape">
+    <div>
+      <ion-item style="padding-left: 8px;">
+        <div item-content style="width:100%;">
+          <ion-input type="text" style="font-size: 1.4rem;" placeholder="Escribir mensaje" [(ngModel)]="comment">
+          </ion-input>
+        </div>
+        <button class="send-btn" item-right ion-button clear (click)="sendComment()">
+          Enviar
+        </button>
+      </ion-item>
+    </div>
+  </ion-toolbar>
+
+<!-- <ion-footer *ngIf="tipo == 3 || tipo == 'Online'" no-border class="send-message">
+
+  <ion-toolbar *ngIf="live == 1">
+    <div>
+      <ion-item style="padding-left: 8px;">
+        <div item-content style="width:100%;">
+          <ion-input type="text" style="font-size: 1.4rem;" placeholder="Escribir mensaje" [(ngModel)]="comment">
+          </ion-input>
+        </div>
+        <button class="send-btn" item-right ion-button clear (click)="sendComment()">
+          Enviar
+        </button>
+      </ion-item>
+    </div>
+  </ion-toolbar>
+
+
+</ion-footer> -->

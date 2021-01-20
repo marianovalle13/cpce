@@ -1,0 +1,35 @@
+page-advice {
+    .toolbar-title {
+        color: color($colors, dark);
+        overflow: visible;
+        position: relative;
+        .subtitle {
+            position: absolute;
+            top: 14px;
+            left: 0;
+            font-size: 70%;
+        }
+    }
+    .toolbar-background {
+        background: white !important;
+    }
+    .text-country {
+        color: color($colors, primary) !important;
+        font-size: 1.2rem;
+    }
+    .text-limit {
+        color: color($colors, secondary) !important;
+        font-size: 1.2rem;
+    }
+    .button-call {
+        border-radius: 4px;
+        height: 2em;
+        font-size: 1rem;
+        color: #fff;
+        padding: 0 5px;
+    }
+    .icon-class {
+        width: 18px;
+        padding-right: 5px;
+    }
+}
